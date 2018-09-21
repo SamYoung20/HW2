@@ -1,0 +1,154 @@
+#! /usr/local/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1-107-gab6ae79)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x9aed30 .scope module, "behavioralDecoder" "behavioralDecoder" 2 7;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 1 "out0"
+    .port_info 1 /OUTPUT 1 "out1"
+    .port_info 2 /OUTPUT 1 "out2"
+    .port_info 3 /OUTPUT 1 "out3"
+    .port_info 4 /INPUT 1 "address0"
+    .port_info 5 /INPUT 1 "address1"
+    .port_info 6 /INPUT 1 "enable"
+v0x9b18e0_0 .net *"_s11", 3 0, L_0x9d1f20;  1 drivers
+v0x9cfbc0_0 .net *"_s5", 3 0, L_0x9d1d10;  1 drivers
+L_0x7f434ad2e018 .functor BUFT 1, C4<000>, C4<0>, C4<0>, C4<0>;
+v0x9cfca0_0 .net *"_s8", 2 0, L_0x7f434ad2e018;  1 drivers
+v0x9cfd90_0 .net *"_s9", 1 0, L_0x9d1e40;  1 drivers
+o0x7f434ad770d8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x9cfe70_0 .net "address0", 0 0, o0x7f434ad770d8;  0 drivers
+o0x7f434ad77108 .functor BUFZ 1, C4<z>; HiZ drive
+v0x9cff80_0 .net "address1", 0 0, o0x7f434ad77108;  0 drivers
+o0x7f434ad77138 .functor BUFZ 1, C4<z>; HiZ drive
+v0x9d0040_0 .net "enable", 0 0, o0x7f434ad77138;  0 drivers
+v0x9d0100_0 .net "out0", 0 0, L_0x9d1b80;  1 drivers
+v0x9d01c0_0 .net "out1", 0 0, L_0x9d1ae0;  1 drivers
+v0x9d0310_0 .net "out2", 0 0, L_0x9d1a10;  1 drivers
+v0x9d03d0_0 .net "out3", 0 0, L_0x9d1910;  1 drivers
+L_0x9d1910 .part L_0x9d1f20, 3, 1;
+L_0x9d1a10 .part L_0x9d1f20, 2, 1;
+L_0x9d1ae0 .part L_0x9d1f20, 1, 1;
+L_0x9d1b80 .part L_0x9d1f20, 0, 1;
+L_0x9d1d10 .concat [ 1 3 0 0], o0x7f434ad77138, L_0x7f434ad2e018;
+L_0x9d1e40 .concat [ 1 1 0 0], o0x7f434ad770d8, o0x7f434ad77108;
+L_0x9d1f20 .shift/l 4, L_0x9d1d10, L_0x9d1e40;
+S_0x9b1760 .scope module, "testDecoder" "testDecoder" 3 5;
+ .timescale -9 -12;
+v0x9d1140_0 .var "addr0", 0 0;
+v0x9d1200_0 .var "addr1", 0 0;
+v0x9d12d0_0 .var "enable", 0 0;
+v0x9d13d0_0 .net "naddress0", 0 0, L_0x9d2060;  1 drivers
+v0x9d14a0_0 .net "naddress1", 0 0, L_0x9d2170;  1 drivers
+v0x9d1540_0 .net "out0", 0 0, L_0x9d2280;  1 drivers
+v0x9d1610_0 .net "out1", 0 0, L_0x9d2390;  1 drivers
+v0x9d16e0_0 .net "out2", 0 0, L_0x9d24e0;  1 drivers
+v0x9d17b0_0 .net "out3", 0 0, L_0x9d2670;  1 drivers
+S_0x9d05b0 .scope module, "decoder" "structuralDecoder" 3 13, 2 18 0, S_0x9b1760;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 1 "out0"
+    .port_info 1 /OUTPUT 1 "out1"
+    .port_info 2 /OUTPUT 1 "out2"
+    .port_info 3 /OUTPUT 1 "out3"
+    .port_info 4 /INPUT 1 "addr0"
+    .port_info 5 /INPUT 1 "addr1"
+    .port_info 6 /INPUT 1 "enable"
+    .port_info 7 /OUTPUT 1 "naddress0"
+    .port_info 8 /OUTPUT 1 "naddress1"
+L_0x9d2060 .functor NOT 1, v0x9d1140_0, C4<0>, C4<0>, C4<0>;
+L_0x9d2170 .functor NOT 1, v0x9d1200_0, C4<0>, C4<0>, C4<0>;
+L_0x9d2280 .functor AND 1, L_0x9d2060, L_0x9d2170, v0x9d12d0_0, C4<1>;
+L_0x9d2390 .functor AND 1, v0x9d1140_0, L_0x9d2170, v0x9d12d0_0, C4<1>;
+L_0x9d24e0 .functor AND 1, L_0x9d2060, v0x9d1200_0, v0x9d12d0_0, C4<1>;
+L_0x9d2670 .functor AND 1, v0x9d1140_0, v0x9d1200_0, v0x9d12d0_0, C4<1>;
+v0x9d0880_0 .net "addr0", 0 0, v0x9d1140_0;  1 drivers
+v0x9d0960_0 .net "addr1", 0 0, v0x9d1200_0;  1 drivers
+v0x9d0a20_0 .net "enable", 0 0, v0x9d12d0_0;  1 drivers
+v0x9d0ac0_0 .net "naddress0", 0 0, L_0x9d2060;  alias, 1 drivers
+v0x9d0b80_0 .net "naddress1", 0 0, L_0x9d2170;  alias, 1 drivers
+v0x9d0c90_0 .net "out0", 0 0, L_0x9d2280;  alias, 1 drivers
+v0x9d0d50_0 .net "out1", 0 0, L_0x9d2390;  alias, 1 drivers
+v0x9d0e10_0 .net "out2", 0 0, L_0x9d24e0;  alias, 1 drivers
+v0x9d0ed0_0 .net "out3", 0 0, L_0x9d2670;  alias, 1 drivers
+    .scope S_0x9b1760;
+T_0 ;
+    %vpi_call 3 16 "$dumpfile", "decoder.vcd" {0 0 0};
+    %vpi_call 3 17 "$dumpvars" {0 0 0};
+    %vpi_call 3 18 "$display", "En A0 A1| O0 O1 O2 O3 | Expected Output" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 20 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 22 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 24 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 26 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 28 "$display", "%b  %b  %b |  %b  %b  %b  %b | O0 Only", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 30 "$display", "%b  %b  %b |  %b  %b  %b  %b | O1 Only", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 32 "$display", "%b  %b  %b |  %b  %b  %b  %b | O2 Only", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d12d0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1140_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x9d1200_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 34 "$display", "%b  %b  %b |  %b  %b  %b  %b | O3 Only", v0x9d12d0_0, v0x9d1140_0, v0x9d1200_0, v0x9d1540_0, v0x9d1610_0, v0x9d16e0_0, v0x9d17b0_0 {0 0 0};
+    %vpi_call 3 35 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./decoder.v";
+    "decoder.t.v";
